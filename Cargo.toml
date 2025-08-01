@@ -1,0 +1,98 @@
+[package]
+name = "cassh2rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["casapps"]
+license = "MIT"
+repository = "https://github.com/casapps/cassh2rs"
+description = "Universal shell script to Rust converter"
+
+[dependencies]
+# CLI and configuration
+clap = { version = "4.5", features = ["derive", "env"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# File system operations
+walkdir = "2.5"
+glob = "0.3"
+
+# Text processing
+regex = "1.10"
+once_cell = "1.19"
+
+# Async runtime
+tokio = { version = "1.36", features = ["full"] }
+
+# Networking
+reqwest = { version = "0.11", features = ["json", "blocking"] }
+
+# Git operations
+git2 = "0.18"
+
+# Notifications
+notify-rust = "4.11"
+lettre = { version = "0.11", features = ["smtp-transport", "hostname", "rustls-tls", "builder"] }
+
+# File watching
+notify = "4.0"
+
+# Logging
+log = "0.4"
+env_logger = "0.11"
+
+# Terminal UI
+indicatif = "0.17"
+colored = "2.1"
+dialoguer = "0.11"
+
+# Parsing
+nom = "7.1"
+lalrpop-util = "0.20"
+
+# Code generation
+quote = "1.0"
+syn = "2.0"
+proc-macro2 = "1.0"
+
+# Compression
+flate2 = "1.0"
+tar = "0.4"
+
+# Platform detection
+target = "2.0"
+
+# Additional dependencies
+hostname = "0.3"
+chrono = "0.4"
+libc = "0.2"
+urlencoding = "2.1"
+
+[build-dependencies]
+lalrpop = "0.20"
+
+[dev-dependencies]
+tempfile = "3.10"
+assert_cmd = "2.0"
+predicates = "3.1"
+criterion = "0.5"
+
+[[bin]]
+name = "cassh2rs"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = "z"     # Optimize for size
+lto = true          # Enable Link Time Optimization
+codegen-units = 1   # Single codegen unit for better optimization
+strip = true        # Strip symbols
+panic = "abort"     # Smaller panic handler
+
+[profile.dev]
+opt-level = 0
+debug = true

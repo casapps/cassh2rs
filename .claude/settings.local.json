@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cargo init:*)"
+      "Bash(cargo init:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(chmod:*)",
+      "Bash(find:*)",
+      "Bash(rm:*)",
+      "Bash(ls:*)",
+      "Bash(mv:*)",
+      "Bash(tree:*)"
     ],
     "deny": []
   }
